@@ -22,6 +22,13 @@ config/icon="res://icon.png"
 
 global="*res://global.tscn"
 
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+
 [importer_defaults]
 
 texture={
@@ -47,4 +54,5 @@ texture={
 
 [rendering]
 
+environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
 environment/default_environment="res://default_env.tres"

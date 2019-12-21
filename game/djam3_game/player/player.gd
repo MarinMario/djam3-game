@@ -28,13 +28,21 @@ func _physics_process(delta):
 		
 	
 	if jump_count < 2:
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_up"):
 			jump_count += 1
 			gravity = -jump_height
 	
 	velocity = Vector2(motion * speed, gravity)
 	move_and_slide(velocity, Vector2(0,-1))
 	
+	if Input.is_action_just_pressed("ui_accept"):
+		spawn_gift()
+	
+
+func spawn_gift():
+	var gift = global.GIFT.instance()
+	gift.target = self.global_position
+	get_parent().add_child(gift)
 	
 	
 	

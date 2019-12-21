@@ -1,3 +1,9 @@
 extends Node2D
 
-const HOUSE = preload("res://house/house.tscn")
+const SMALL_HOUSE = preload("res://house/small_house.tscn")
+const MEDIUM_HOUSE = preload("res://house/medium_house.tscn")
+const BIG_HOUSE = preload("res://house/big_house.tscn")
+const WINDOW = preload("res://house/window.tscn")
+const GIFT = preload("res://gift/gift.tscn")
+
+var score := 0
