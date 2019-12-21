@@ -16,6 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="djam3_game"
+run/main_scene="res://world/world.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -26,6 +27,7 @@ global="*res://global.tscn"
 
 window/size/width=1280
 window/size/height=720
+window/size/fullscreen=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
@@ -54,5 +56,5 @@ texture={
 
 [rendering]
 
-environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
+environment/default_clear_color=Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 environment/default_environment="res://default_env.tres"

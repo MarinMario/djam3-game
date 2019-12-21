@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var velocity: Vector2
-var speed := 500
+var speed := 300
 var gravity := 0
 var motion := 0
 var jump_height := 1500

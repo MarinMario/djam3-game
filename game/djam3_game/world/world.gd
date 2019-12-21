@@ -1,12 +1,18 @@
 extends Node2D
 
 var house_timer := 0.0
+var city_bg_timer := 0.0
 
 func _process(delta):
 	house_timer += delta
 	if house_timer > 1.5:
 		spawn_house()
 		house_timer = 0
+	
+	city_bg_timer += delta
+	if city_bg_timer >= 19:
+		city_bg_timer = 0
+		spawn_city()
 	
 	$floor.position.x -= 500 * delta
 	
@@ -18,6 +24,10 @@ func spawn_house():
 	var small_house = global.SMALL_HOUSE.instance()
 	var house = [medium_house, big_house, small_house]
 	add_child(house[randi()%house.size()])
+
+func spawn_city():
+	var city_bg = global.CITY_BG.instance()
+	add_child(city_bg)
 
 func _on_void_body_entered(body):
 	if body.name == "player":
