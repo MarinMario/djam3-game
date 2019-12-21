@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://world/world.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1685.83, 52.6817 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2635.14, 77.9673 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://world/Anton-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 100
+font_data = SubResource( 3 )
 
 [node name="world" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,6 +23,7 @@ script = ExtResource( 1 )
 position = Vector2( 224.06, 236.648 )
 
 [node name="floor" type="StaticBody2D" parent="."]
+editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
 position = Vector2( 638.798, 661.114 )
@@ -24,3 +35,25 @@ margin_top = 611.0
 margin_right = 2318.0
 margin_bottom = 721.0
 color = Color( 0.137255, 0.145098, 0.184314, 1 )
+
+[node name="void" type="Area2D" parent="."]
+editor/display_folded = true
+position = Vector2( 0, 899.363 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="void"]
+position = Vector2( 469.703, 61.7683 )
+shape = SubResource( 2 )
+
+[node name="score" type="Node2D" parent="."]
+z_index = -999
+
+[node name="label" type="Label" parent="score"]
+margin_left = -1.0
+margin_top = 3.0
+margin_right = 1283.0
+margin_bottom = 612.0
+custom_fonts/font = SubResource( 4 )
+text = "0"
+align = 1
+valign = 1
+[connection signal="body_entered" from="void" to="." method="_on_void_body_entered"]

@@ -11,11 +11,13 @@ func _process(delta):
 	self.position.y += speed * delta
 	self.position.x -= 500 * delta
 	
-	if self.position.y > 800: self.queue_free()
-
-func _on_gift_body_entered(body):
-	if body.name == "horn":
-		global.score += 1
-		self.queue_free()
-	else:
+	if self.position.y > 800:
 		global.score -= 1
+		print(global.score)
+		self.queue_free()
+
+func _on_gift_area_entered(area):
+	if area.is_in_group("horn"):
+		global.score += 1
+		print(global.score)
+		self.queue_free()
