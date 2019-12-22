@@ -2,6 +2,16 @@ extends Node2D
 
 var house_timer := 0.0
 var city_bg_timer := 0.0
+var speed_up_timer := 0.0
+var menu_open := false
+var pause := false
+var building_speed := 0
+
+func _ready():
+	$anims.play("ready")
+	global.building_speed = 500
+	global.score = 0
+	get_tree().paused = false
 
 func _process(delta):
 	house_timer += delta
@@ -14,9 +24,20 @@ func _process(delta):
 		city_bg_timer = 0
 		spawn_city()
 	
+	speed_up_timer += delta
+	if global.building_speed < 1000:
+		if speed_up_timer > 1:
+			speed_up_timer = 0
+			global.building_speed += 4
+	
+		
+	if Input.is_action_just_pressed("ui_cancel"):
+		menu()
+	
 	$floor.position.x -= 500 * delta
 	
 	$score/label.text = str(global.score)
+
 
 func spawn_house():
 	var medium_house = global.MEDIUM_HOUSE.instance()
@@ -30,6 +51,15 @@ func spawn_city():
 	add_child(city_bg)
 
 func _on_void_body_entered(body):
-	if body.name == "player":
-		global.score = 0
-		get_tree().reload_current_scene()
+	if body.name == "player" and !menu_open:
+		$anims.play("menu")
+
+func _on_pause_pressed():
+	menu()
+
+func menu():
+	if menu_open:
+		$anims.play_backwards("menu")
+	else:
+		$anims.play("menu")
+	menu_open = !menu_open

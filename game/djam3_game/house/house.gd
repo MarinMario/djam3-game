@@ -1,7 +1,5 @@
 extends StaticBody2D
 
-var speed = 500
-var screen: Vector2
 
 func _ready():
 	randomize()
@@ -10,7 +8,7 @@ func _ready():
 	$Sprite.modulate = Color(rand_range(0.1,0.2), rand_range(0.1,0.2), rand_range(0.2,0.3))
 	
 func _physics_process(delta):
-	get_parent().global_position.x -= speed * delta
+	get_parent().global_position.x -= global.building_speed * delta
 	
 	if get_parent().position.x <= -800:
 		self.queue_free()

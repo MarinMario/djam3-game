@@ -9,3 +9,4 @@ const CITY_BG = preload("res://world/city_background.tscn")
 const PLUS_MINUS = preload("res://world/plusminus.tscn")
 
 var score := 0
+var building_speed := 500
