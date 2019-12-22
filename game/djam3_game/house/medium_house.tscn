@@ -71,4 +71,4 @@ position = Vector2( 200, 50 )
 position = Vector2( 300, 50 )
 
 [node name="horn" parent="." instance=ExtResource( 3 )]
-position = Vector2( 197.925, -60.8239 )
+position = Vector2( 65.2583, -57.2139 )

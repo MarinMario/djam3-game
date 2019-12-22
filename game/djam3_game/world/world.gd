@@ -31,4 +31,5 @@ func spawn_city():
 
 func _on_void_body_entered(body):
 	if body.name == "player":
+		global.score = 0
 		get_tree().reload_current_scene()

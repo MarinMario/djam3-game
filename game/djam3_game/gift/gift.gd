@@ -13,11 +13,18 @@ func _process(delta):
 	
 	if self.position.y > 800:
 		global.score -= 1
+		spawn_plusminus("minus")
 		print(global.score)
 		self.queue_free()
 
 func _on_gift_area_entered(area):
 	if area.is_in_group("horn"):
 		global.score += 1
-		print(global.score)
+		spawn_plusminus("plus")
+		area.get_node("anim").play("flag")
 		self.queue_free()
+
+func spawn_plusminus(state):
+	var plusminus = global.PLUS_MINUS.instance()
+	plusminus.state = state
+	get_parent().add_child(plusminus)

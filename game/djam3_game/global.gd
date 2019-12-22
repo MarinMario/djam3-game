@@ -6,5 +6,6 @@ const BIG_HOUSE = preload("res://house/big_house.tscn")
 const WINDOW = preload("res://house/window.tscn")
 const GIFT = preload("res://gift/gift.tscn")
 const CITY_BG = preload("res://world/city_background.tscn")
+const PLUS_MINUS = preload("res://world/plusminus.tscn")
 
 var score := 0
