@@ -5,6 +5,8 @@ var option_menu_up := false
 
 func _ready():
 	$anims.play("ready")
+	get_tree().paused = false
+	$best.text = "Best: " + str(global.best_score)
 
 func _on_play_pressed():
 	$anims.play_backwards("change")

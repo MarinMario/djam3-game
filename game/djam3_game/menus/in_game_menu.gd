@@ -13,7 +13,7 @@ func _on_options_pressed():
 
 
 func _on_exit_pressed():
-	get_tree().paused = false
+	#get_tree().paused = false
 	$anims.play("trans")
 	change_to = "res://menus/main_menu.tscn"
 
@@ -24,6 +24,6 @@ func _on_anims_animation_finished(anim_name):
 
 
 func _on_retry_pressed():
-	get_tree().paused = false
+	#get_tree().paused = false
 	$anims.play("trans")
 	change_to = "res://world/world.tscn"

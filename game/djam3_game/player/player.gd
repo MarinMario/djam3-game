@@ -7,6 +7,7 @@ var motion := 0
 var jump_height := 1500
 var jump_count := 0
 var anim := "move"
+var allow_gift := true
 
 func _physics_process(delta):
 	motion = 0
@@ -35,7 +36,7 @@ func _physics_process(delta):
 	velocity = Vector2(motion * speed, gravity)
 	move_and_slide(velocity, Vector2(0,-1))
 	
-	if Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept") and allow_gift:
 		spawn_gift()
 	
 

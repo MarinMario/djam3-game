@@ -4,7 +4,7 @@ var house_timer := 0.0
 var city_bg_timer := 0.0
 var speed_up_timer := 0.0
 var menu_open := false
-var pause := false
+var can_close_menu := true
 var building_speed := 0
 
 func _ready():
@@ -12,6 +12,7 @@ func _ready():
 	global.building_speed = 500
 	global.score = 0
 	get_tree().paused = false
+	can_close_menu = true
 
 func _process(delta):
 	house_timer += delta
@@ -37,6 +38,7 @@ func _process(delta):
 	$floor.position.x -= 500 * delta
 	
 	$score/label.text = str(global.score)
+	$best_score/label.text = str(global.best_score)
 
 
 func spawn_house():
@@ -53,13 +55,19 @@ func spawn_city():
 func _on_void_body_entered(body):
 	if body.name == "player" and !menu_open:
 		$anims.play("menu")
+		can_close_menu = false
+		$player.allow_gift = false
+		if global.score > global.best_score:
+			global.best_score = global.score
 
 func _on_pause_pressed():
 	menu()
 
 func menu():
-	if menu_open:
-		$anims.play_backwards("menu")
-	else:
-		$anims.play("menu")
+	if can_close_menu:
+		if menu_open:
+			$anims.play_backwards("menu")
+		else:
+			$anims.play("menu")
+	
 	menu_open = !menu_open

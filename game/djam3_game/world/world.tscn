@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://world/world.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://menus/pause_pressed.png" type="Texture" id=7]
 [ext_resource path="res://menus/pause_hover.png" type="Texture" id=8]
 [ext_resource path="res://world/pause.gd" type="Script" id=9]
+[ext_resource path="res://world/tutorial.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1685.83, 52.6817 )
@@ -23,7 +24,14 @@ font_path = "res://world/FFFFORWA.TTF"
 size = 100
 font_data = SubResource( 3 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://world/FFFFORWA.TTF"
+
+[sub_resource type="DynamicFont" id=9]
+size = 50
+font_data = SubResource( 8 )
+
+[sub_resource type="Animation" id=5]
 resource_name = "change"
 length = 0.6
 tracks/0/type = "value"
@@ -39,7 +47,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 1500, 0 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 resource_name = "menu"
 length = 0.5
 tracks/0/type = "value"
@@ -55,8 +63,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1500, 50 ), Vector2( 500, 50 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "ready"
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("trans:position")
@@ -125,6 +132,20 @@ text = "0"
 align = 1
 valign = 1
 
+[node name="best_score" type="Node2D" parent="."]
+position = Vector2( -2, 0 )
+z_index = -300
+
+[node name="label" type="Label" parent="best_score"]
+margin_left = -3.78943
+margin_top = 5.78955
+margin_right = 1280.21
+margin_bottom = 905.79
+custom_fonts/font = SubResource( 9 )
+text = "0"
+align = 1
+valign = 1
+
 [node name="city_background" parent="." instance=ExtResource( 3 )]
 position = Vector2( -1919.64, 6.23059 )
 
@@ -135,9 +156,9 @@ position = Vector2( -1.03516, 5.23083 )
 
 [node name="anims" type="AnimationPlayer" parent="."]
 pause_mode = 2
-anims/change = SubResource( 6 )
-anims/menu = SubResource( 7 )
-anims/ready = SubResource( 5 )
+anims/change = SubResource( 5 )
+anims/menu = SubResource( 6 )
+anims/ready = SubResource( 7 )
 
 [node name="in_game_menu" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1500, 50 )
@@ -157,5 +178,8 @@ texture_hover = ExtResource( 8 )
 expand = true
 stretch_mode = 4
 script = ExtResource( 9 )
+
+[node name="tutorial" parent="." instance=ExtResource( 10 )]
+position = Vector2( 631.975, 170.339 )
 [connection signal="body_entered" from="void" to="." method="_on_void_body_entered"]
 [connection signal="pressed" from="pause" to="." method="_on_pause_pressed"]

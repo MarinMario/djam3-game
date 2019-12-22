@@ -87,7 +87,6 @@ valign = 1
 [node name="retry" parent="buttons" instance=ExtResource( 3 )]
 pause_mode = 2
 editor/display_folded = true
-margin_right = 250.0
 
 [node name="Label" type="Label" parent="buttons/retry"]
 margin_top = 8.0

@@ -2,8 +2,10 @@ extends Sprite
 
 func _ready():
 	randomize()
-	var colors = [Color(100,100,100), "#545230"]
-	self.modulate = colors[randi()%colors.size() - 1]
+	if randi()%2 == 0:
+		self.modulate = "#545230"
+	else:
+		self.queue_free()
 	
 	if self.modulate == Color(100,100,100):
 		self.queue_free()
