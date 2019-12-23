@@ -19,19 +19,20 @@ func _physics_process(delta):
 		motion -= 1
 	
 	if is_on_floor():
-		gravity = 0
 		jump_count = 0
 	else:
 		if Input.is_action_pressed("ui_down"):
 			gravity += 1000
 		else:
-			gravity += 100
+			gravity += 100 if gravity < 1000 else 0
 		
 	
 	if jump_count < 2:
 		if Input.is_action_just_pressed("ui_up"):
 			jump_count += 1
 			gravity = -jump_height
+			print(gravity)
+		
 	
 	velocity = Vector2(motion * speed, gravity)
 	move_and_slide(velocity, Vector2(0,-1))

@@ -59,6 +59,9 @@ func _on_void_body_entered(body):
 		$player.allow_gift = false
 		if global.score > global.best_score:
 			global.best_score = global.score
+		
+		yield(get_tree().create_timer(0.5), "timeout")
+		$anims.play("lose")
 
 func _on_pause_pressed():
 	menu()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://world/world.gd" type="Script" id=1]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=2]
@@ -24,15 +24,14 @@ font_path = "res://world/FFFFORWA.TTF"
 size = 100
 font_data = SubResource( 3 )
 
-[sub_resource type="DynamicFontData" id=8]
+[sub_resource type="DynamicFontData" id=5]
 font_path = "res://world/FFFFORWA.TTF"
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=6]
 size = 50
-font_data = SubResource( 8 )
+font_data = SubResource( 5 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "change"
+[sub_resource type="Animation" id=7]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("trans:position")
@@ -47,8 +46,23 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 1500, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "menu"
+[sub_resource type="Animation" id=8]
+resource_name = "lose"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("you_lose:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1000, 0 ), Vector2( 1000, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("in_game_menu:position")
@@ -63,7 +77,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1500, 50 ), Vector2( 500, 50 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("trans:position")
@@ -132,6 +146,22 @@ text = "0"
 align = 1
 valign = 1
 
+[node name="you_lose" type="Node2D" parent="."]
+position = Vector2( -1000, 0 )
+z_index = 4096
+z_as_relative = false
+
+[node name="label" type="Label" parent="you_lose"]
+margin_left = -3.78943
+margin_top = 5.78955
+margin_right = 1280.21
+margin_bottom = 614.79
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.462745, 0.462745, 0.462745, 1 )
+text = "YOU LOSE"
+align = 1
+valign = 1
+
 [node name="best_score" type="Node2D" parent="."]
 position = Vector2( -2, 0 )
 z_index = -300
@@ -141,7 +171,7 @@ margin_left = -3.78943
 margin_top = 5.78955
 margin_right = 1280.21
 margin_bottom = 905.79
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 6 )
 text = "0"
 align = 1
 valign = 1
@@ -156,9 +186,10 @@ position = Vector2( -1.03516, 5.23083 )
 
 [node name="anims" type="AnimationPlayer" parent="."]
 pause_mode = 2
-anims/change = SubResource( 5 )
-anims/menu = SubResource( 6 )
-anims/ready = SubResource( 7 )
+anims/change = SubResource( 7 )
+anims/lose = SubResource( 8 )
+anims/menu = SubResource( 9 )
+anims/ready = SubResource( 10 )
 
 [node name="in_game_menu" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1500, 50 )
